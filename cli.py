@@ -79,9 +79,9 @@ class CLIPlayer:
     def start(self):
         self._lines_since_keyboard = -1
         self._response_history = []
-        self._keyboard_status = {letter: LetterStates.NOTGUESSEDYET for letter in string.ascii_uppercase}
+        self._keyboard_status = {letter: LetterStates.NOTGUESSEDYET for letter in '0123456789+-*/='}
 
-        self.out(f"Let's play a game of Wordle")
+        self.out(f"Let's play a game of Nerdle!")
         self.update_keyboard()
 
     def guess(self, round) -> str:

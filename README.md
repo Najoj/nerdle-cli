@@ -1,13 +1,10 @@
+Work in progress
+
 # wordle-cli
 
-Command-line clone of Josh Wardle's [Wordle](https://www.powerlanguage.co.uk/wordle/), inspired by [Paul Battley's Ruby version](https://github.com/threedaymonk/wordle). Features:
+Command-line clone of klipspringr's [nerdle-cli](https://github.com/klipspringr/wordle-cli/) adapted for [Nerlde](https://nerdlegame.com/).
 
-- play against random solutions, or against the daily "official" Wordle solution
-- uses official (NYT) dictionaries of solutions and valid guesses
-- spoiler-free emoji summaries for sharing
-- optional hints mode (`--hints`) to show number of possible words remaining
-
-![Screenshot of a wordle-cli game](/assets/screenshot.png?raw=true "Screenshot of a wordle-cli game")
+Customize solution, of customizable length.
 
 ## Download and run
 
@@ -43,8 +40,3 @@ So, to play against random solutions, run `python3 play.py`; to play today's off
 
 Hints mode (`--hints`) looks like this:
 
-![Screenshot of a wordle-cli game with hints](/assets/screenshot_hints.png?raw=true "Screenshot of a wordle-cli game with hints")
-
-## Configuration
-
-To change the terminal colours, sharing emoji and other variables, save the file `config.ini.defaults` as `config.ini` and uncomment and edit the relevant lines. Colours are specified using ECMA-48 Select Graphic Rendition codes ([cheat sheet](https://i.stack.imgur.com/6otvY.png)).

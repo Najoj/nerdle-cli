@@ -8,9 +8,18 @@ class LetterStates(Enum):
     INCORRECTPOSITION = 2
     CORRECTPOSITION = 3
 
+
+def evaluate(guess: str) -> bool:
+    if guess.count('=') != 1:
+        return False
+    guess = guess.replace('=', '==')
+    evaluation = eval(guess)
+    return evaluation
+
+
 class Game:
     ROUNDS = 6
-    LENGTH = 5
+    LENGTH = 8
     WIN_STATES = [LetterStates.CORRECTPOSITION for _ in range(LENGTH)]
 
     def __init__(self, path_solutions="data/solutions.txt", path_guesses="data/guesses.txt"):
@@ -20,7 +29,8 @@ class Game:
         with open(os.path.join(os.path.dirname(__file__), path_guesses), "r") as f:
             self.VALID_GUESSES = tuple(l.upper() for l in f.read().splitlines() if len(l) == self.LENGTH)
 
-        # official list of guesses does not include solutions, so add them, ignoring duplicates (albeit no duplicates in official lists)
+        # official list of guesses does not include solutions, so add them, ignoring duplicates (albeit no duplicates
+        # in official lists)
         self.VALID_GUESSES = tuple(set(self.VALID_SOLUTIONS + self.VALID_GUESSES))
 
         self.POSSIBLE_WORDS = list(self.VALID_GUESSES)
@@ -31,9 +41,10 @@ class Game:
         while round <= self.ROUNDS:
             while True:
                 guess = player.guess(round)
+                evaluated = evaluate(guess)
                 if player.ASSUME_GUESSES_VALID:
                     break
-                elif len(guess) != self.LENGTH or not guess.isalpha():
+                elif not evaluated:
                     guess = guess.strip()
                     player.warn(f"{ guess[:5]+'..' if len(guess) > self.LENGTH else guess } invalid")
                 elif guess not in self.VALID_GUESSES:
